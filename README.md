@@ -10,3 +10,7 @@ Scalable FCs
 FC Fault tolerance, Security, Data Privacy
 FC Scheduling 
 Resource management for FCs
+
+
+# Additional code by Simon Kleinfeld
+There is additional code to solve the exercises.
