@@ -26,10 +26,10 @@ function acceptable(num_queens, queen_rows){
   *
   */
 function main(params) {
-	var from = parseInt(params.from);
-    var placements_per_function = parseInt(params.placements_per_function);
+	  var from = params.from
+    var placements_per_function = params.placements_per_function
     var to = from + placements_per_function;
-    var num_queens = parseInt(params.N);
+    var num_queens = params.N
 
     var solutions = 0;
     for(var iter = from; iter < to; iter++){

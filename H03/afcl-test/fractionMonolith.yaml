@@ -1,0 +1,36 @@
+---
+name: "fraction"
+dataIns:
+  - name: "N"
+      type: "number"
+      source: "N"
+  - name: "from"
+      type: "number"
+      source: "from"
+  - name: "placements_per_function"
+      type: "number"
+      source: "placements_per_function"
+workflowBody:
+  - function:
+      name: "fraction"
+      type: "helloType"
+      dataIns:
+        - name: "N"
+            type: "number"
+            source: "fraction/N"
+        - name: "from"
+            type: "number"
+            source: "fraction/from"
+        - name: "placements_per_function"
+            type: "number"
+            source: "fraction/placements_per_function"
+      dataOuts:
+        - name: "solutions"
+          type: "string"
+      properties:
+        - name: "resource"
+          value: "js:https://eu-gb.functions.appdomain.cloud/api/v1/web/385c9967-7d39-45e5-9359-f82bc43b6376/homework3/fractionMonolithGiven.json"
+dataOuts:
+  - name: "solutions"
+    type: "string"
+    source: "fraction/solutions"
