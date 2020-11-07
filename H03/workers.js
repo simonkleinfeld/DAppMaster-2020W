@@ -8,7 +8,7 @@ function main(params) {
   const workers = Math.pow(N / 3, k)
 
   let placements_from = []
-  let placements_per_function = Math.pow(N,N)/N
+  let placements_per_function = Math.pow(N,N)/workers
 
   for (var i of _.range(0, workers)) {
 
