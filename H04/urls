@@ -1,0 +1,14 @@
+TOKYO:
+https://jp-tok.functions.appdomain.cloud/api/v1/web/0f23135f-f52c-4572-9016-256acce2213b/default/hw4.json
+
+DALLAS:
+https://us-south.functions.appdomain.cloud/api/v1/web/acd8ef00-ba9d-405b-a87b-bb7c0fe056df/default/hw4.json
+
+LONDON:
+https://eu-gb.functions.appdomain.cloud/api/v1/web/385c9967-7d39-45e5-9359-f82bc43b6376/homework4/fraction.json
+
+WORKERS:
+https://eu-gb.functions.appdomain.cloud/api/v1/web/385c9967-7d39-45e5-9359-f82bc43b6376/homework4/workers.json
+
+REDUCERS:
+https://eu-gb.functions.appdomain.cloud/api/v1/web/385c9967-7d39-45e5-9359-f82bc43b6376/homework4/reducers.json
