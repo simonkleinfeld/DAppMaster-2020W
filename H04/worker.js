@@ -4,6 +4,7 @@ function main(params) {
 
   const N = params.N
   const k = params.k
+  const regions = params.R
 
   const workers = Math.round(Math.pow(N / 3, k))
 
@@ -16,10 +17,12 @@ function main(params) {
     placements_from.push(placement_from)
   }
 
-  var chunks = chunk(placements_from, 3)
+  const chunks = chunk(placements_from, 3)
+
+  const workers_per_loop = Math.min(chunks[0].length, chunks[1].length, chunks[2].length)
 
   return {
-    "workers": 3,
+    "workers_per_loop": workers_per_loop,
     "placements_from_first": chunks[0],
     "placements_from_second": chunks[1],
     "placements_from_third": chunks[2],

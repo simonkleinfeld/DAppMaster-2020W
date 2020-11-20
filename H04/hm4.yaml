@@ -7,6 +7,9 @@ dataIns:
 - name: "k"
   type: "number"
   source: "k"
+- name: "R"
+  type: "number"
+  source: "R"
 workflowBody:
 - function:
     name: "workers"
@@ -18,8 +21,11 @@ workflowBody:
     - name: "k"
       type: "number"
       source: "hm4/k"
+    - name: "R"
+      type: "number"
+      source: "hm4/R"
     dataOuts:
-    - name: "workers"
+    - name: "workers_per_loop"
       type: "number"
     - name: "placements_from_first"
       type: "collection"
@@ -38,6 +44,9 @@ workflowBody:
     - name: "N"
       type: "number"
       source: "hm4/N"
+    - name: "workers_per_loop"
+      type: "number"
+      source: "workers/workers_per_loop"
     - name: "from1"
       type: "collection"
       source: "workers/placements_from_first"
@@ -76,7 +85,7 @@ workflowBody:
           loopCounter:
             type: "number"
             from: "0"
-            to: "3"
+            to: "parallelized_ParallelFor/workers_per_loop"
             step: "1"
           loopBody:
           - function:
@@ -127,7 +136,7 @@ workflowBody:
           loopCounter:
             type: "number"
             from: "0"
-            to: "3"
+            to: "parallelized_ParallelFor/workers_per_loop"
             step: "1"
           loopBody:
           - function:
@@ -178,7 +187,7 @@ workflowBody:
           loopCounter:
             type: "number"
             from: "0"
-            to: "3"
+            to: "parallelized_ParallelFor/workers_per_loop"
             step: "1"
           loopBody:
           - function:
