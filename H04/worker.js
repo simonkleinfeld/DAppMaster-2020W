@@ -9,26 +9,25 @@ function main(params) {
   const workers = Math.round(Math.pow(N / 3, k))
 
   let placements_from = []
-  let placements_per_function = Math.pow(N,N)/workers
+  const placements=Math.pow(N,N)
+  const placements_per_function = Math.round(placements/workers)
 
-  for (var i of _.range(0, workers)) {
-
-    const placement_from = i * Math.pow(N, N) / workers
-    placements_from.push(placement_from)
+  for (let i = 0; i <placements; i += placements_per_function) {
+    placements_from.push(i);
   }
-
-  const chunks = chunk(placements_from, 3)
-
-  const workers_per_loop = Math.min(chunks[0].length, chunks[1].length, chunks[2].length)
-
-  return {
+  const workers_per_loop = Math.round(workers / regions);
+  let result = {
     "workers_per_loop": workers_per_loop,
-    "placements_from_first": chunks[0],
-    "placements_from_second": chunks[1],
-    "placements_from_third": chunks[2],
     "placements_per_function": placements_per_function
+  };
+
+ //https://stackoverflow.com/questions/43288206/how-can-you-dynamically-slice-an-array-in-javascript-jquery
+  const chunk = placements_from.length / regions;
+  for (let i = 0; i < placements_from.length; i += chunk) {
+    result['placements_'+(i / chunk)] = placements_from.slice(i, i + chunk);
   }
+
+  return result
 
 }
 
-const chunk = (arr, size) => arr.reduce((acc, e, i) => (i % size ? acc[acc.length - 1].push(e) : acc.push([e]), acc), []);
