@@ -1,0 +1,71 @@
+C:\git\DAppMaster-2020W\H05>java -jar enactment-engine-all.jar hm5.yaml input.json
+289 [main] INFO at.enactmentengine.serverless.parser.YAMLParser - Workflow was converted to an executable workflow.
+311 [main] INFO at.enactmentengine.serverless.nodes.ExecutableWorkflow - Starting execution of workflow: "hm5" [at 1607036949100ms]
+313 [pool-1-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Executing function workers at resource: https://eu-gb.functions.appdomain.cloud/api/v1/web/385c9967-7d39-45e5-9359-f82bc43b6376/homework5/workers.json [16
+07036949103ms], id=0
+314 [pool-1-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Input for function workers : {R=3.0, successRate=80.0, k=1.0, N=9.0} [1607036949103ms], id=0
+924 [pool-1-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Function took: 609 ms. Result: workers : {"placements_0":[0],"placements_1":[129140163],"placements_2":[258280326],"placements_per_function":129140163,"su
+ccessRate":80,"workers_per_loop":1} [1607036949713ms], id=0
+925 [pool-1-thread-1] INFO at.enactmentengine.serverless.nodes.ParallelStartNode - Executing parallelized_ParallelFor ParallelStartNodeOld
+926 [pool-2-thread-1] INFO at.enactmentengine.serverless.nodes.ParallelForStartNode - Executing ParallelFor_0 ParallelForStartNodeOld with input {ParallelFor_0/placements_per_function=1.29140163E8, ParallelFor_0/successRate=80.0, Pa
+rallelFor_0/N=9.0, ParallelFor_0/from=[0]}
+926 [pool-2-thread-3] INFO at.enactmentengine.serverless.nodes.ParallelForStartNode - Executing ParallelFor_2 ParallelForStartNodeOld with input {ParallelFor_2/from=[258280326], ParallelFor_2/successRate=80.0, ParallelFor_2/N=9.0, P
+arallelFor_2/placements_per_function=1.29140163E8}
+926 [pool-2-thread-2] INFO at.enactmentengine.serverless.nodes.ParallelForStartNode - Executing ParallelFor_1 ParallelForStartNodeOld with input {ParallelFor_1/from=[129140163], ParallelFor_1/successRate=80.0, ParallelFor_1/N=9.0, P
+arallelFor_1/placements_per_function=1.29140163E8}
+927 [pool-2-thread-3] INFO at.enactmentengine.serverless.nodes.ParallelForStartNode - Counter values for at.enactmentengine.serverless.nodes.ParallelForStartNode : counterStart: 0, counterEnd: 1, stepSize: 1
+926 [pool-2-thread-1] INFO at.enactmentengine.serverless.nodes.ParallelForStartNode - Counter values for at.enactmentengine.serverless.nodes.ParallelForStartNode : counterStart: 0, counterEnd: 1, stepSize: 1
+928 [pool-2-thread-2] INFO at.enactmentengine.serverless.nodes.ParallelForStartNode - Counter values for at.enactmentengine.serverless.nodes.ParallelForStartNode : counterStart: 0, counterEnd: 1, stepSize: 1
+930 [pool-4-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Executing function fractionMonolith_0 at resource: https://eu-gb.functions.appdomain.cloud/api/v1/web/385c9967-7d39-45e5-9359-f82bc43b6376/homework5/fract
+ionMonolithFT.json [1607036949720ms], id=1
+930 [pool-5-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Executing function fractionMonolith_1 at resource: https://jp-tok.functions.appdomain.cloud/api/v1/web/0f23135f-f52c-4572-9016-256acce2213b/homework5/frac
+tionMonolithFT.json [1607036949720ms], id=3
+930 [pool-3-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Executing function fractionMonolith_2 at resource: https://us-south.functions.appdomain.cloud/api/v1/web/acd8ef00-ba9d-405b-a87b-bb7c0fe056df/homework5/fr
+actionMonolithFT.json [1607036949720ms], id=2
+930 [pool-5-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Input for function fractionMonolith_1 : {placements_per_function=129140163, successRate=80, from=129140163, N=9} [1607036949720ms], id=3
+930 [pool-4-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Input for function fractionMonolith_0 : {placements_per_function=129140163, successRate=80, from=0, N=9} [1607036949720ms], id=1
+931 [pool-3-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Input for function fractionMonolith_2 : {placements_per_function=129140163, from=258280326, N=9} [1607036949721ms], id=2
+934 [pool-4-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Invoking function with fault tolerance...
+934 [pool-5-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Invoking function with fault tolerance...
+934 [pool-3-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Invoking function with fault tolerance...
+11178 [pool-4-thread-1] ERROR at.uibk.dps.InvokationThread - Invocation in Thread[pool-4-thread-1,5,main]failed! - Error:{"code":"56d83c19844084229b77e20be582c8d2","error":"There was an error processing your request."}
+11178 [pool-4-thread-1] INFO at.uibk.dps.MasterThread - ##############  First invokation has failed retrying 0 times.  ##############
+11179 [pool-4-thread-1] INFO at.uibk.dps.MasterThread - ##############  Trying Alternative Plan 0  ##############
+11180 [main] ERROR at.enactmentengine.serverless.main.Executor - java.util.concurrent.ExecutionException: java.util.concurrent.ExecutionException: at.uibk.dps.exception.InvokationFailureException: Invokation has failed
+java.util.concurrent.ExecutionException: java.util.concurrent.ExecutionException: java.util.concurrent.ExecutionException: at.uibk.dps.exception.InvokationFailureException: Invokation has failed
+        at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:122)
+        at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:191)
+        at at.enactmentengine.serverless.nodes.ExecutableWorkflow.executeWorkflow(ExecutableWorkflow.java:111)
+        at at.enactmentengine.serverless.main.Executor.executeWorkflow(Executor.java:110)
+        at at.enactmentengine.serverless.main.Executor.executeWorkflow(Executor.java:56)
+        at at.enactmentengine.serverless.main.Local.main(Local.java:25)
+Caused by: java.util.concurrent.ExecutionException: java.util.concurrent.ExecutionException: at.uibk.dps.exception.InvokationFailureException: Invokation has failed
+        at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:122)
+        at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:191)
+        at at.enactmentengine.serverless.nodes.ParallelStartNode.call(ParallelStartNode.java:60)
+        at at.enactmentengine.serverless.nodes.ParallelStartNode.call(ParallelStartNode.java:21)
+        at at.enactmentengine.serverless.nodes.FunctionNode.call(FunctionNode.java:112)
+        at at.enactmentengine.serverless.nodes.FunctionNode.call(FunctionNode.java:34)
+        at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+        at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+        at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+        at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.util.concurrent.ExecutionException: at.uibk.dps.exception.InvokationFailureException: Invokation has failed
+        at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:122)
+        at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:191)
+        at at.enactmentengine.serverless.nodes.ParallelForStartNode.call(ParallelForStartNode.java:136)
+        at at.enactmentengine.serverless.nodes.ParallelForStartNode.call(ParallelForStartNode.java:29)
+        ... 4 more
+Caused by: at.uibk.dps.exception.InvokationFailureException: Invokation has failed
+        at at.uibk.dps.FaultToleranceEngine.InvokeFunctionFT(FaultToleranceEngine.java:96)
+        at at.enactmentengine.serverless.nodes.FunctionNode.invokeFunction(FunctionNode.java:154)
+        at at.enactmentengine.serverless.nodes.FunctionNode.call(FunctionNode.java:104)
+        at at.enactmentengine.serverless.nodes.FunctionNode.call(FunctionNode.java:34)
+        ... 4 more
+11191 [main] INFO at.enactmentengine.serverless.main.Local - Result: null
+50892 [pool-5-thread-1] INFO at.uibk.dps.InvokationThread - Invocation in Thread[pool-5-thread-1,5,main] OK - RESULT: {"solutions":142}
+50892 [pool-5-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Function took: 49960 ms. Result: fractionMonolith_1 : {"solutions":142} [1607036999682ms], id=3
+50893 [pool-5-thread-1] INFO at.enactmentengine.serverless.nodes.ParallelForEndNode - Executing ParallelFor_1 ParallelForEndNodeOld with output: {ParallelFor_1/results=[142.0]}
+52628 [pool-3-thread-1] INFO at.uibk.dps.InvokationThread - Invocation in Thread[pool-3-thread-1,5,main] OK - RESULT: {"solutions":105}
+52628 [pool-3-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Function took: 51696 ms. Result: fractionMonolith_2 : {"solutions":105} [1607037001418ms], id=2
+52629 [pool-3-thread-1] INFO at.enactmentengine.serverless.nodes.ParallelForEndNode - Executing ParallelFor_2 ParallelForEndNodeOld with output: {ParallelFor_2/results=[105.0]}

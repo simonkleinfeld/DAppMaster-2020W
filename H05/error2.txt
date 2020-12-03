@@ -1,0 +1,137 @@
+C:\git\DAppMaster-2020W\H05>java -jar xAFCL.jar hm5.yaml input.json
+285 [main] INFO at.enactmentengine.serverless.parser.YAMLParser - Workflow was converted to an executable workflow.
+306 [main] INFO at.enactmentengine.serverless.nodes.ExecutableWorkflow - Starting execution of workflow: "hm5" [at 1607037337055ms]
+309 [pool-1-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Executing function workers at resource: https://eu-gb.functions.appdomain.cloud/api/v1/web/385c9967-7d39-45e5-9359-f82bc43b6376/homework5/workers.json [16
+07037337059ms], id=0
+310 [pool-1-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Input for function workers : {R=3.0, successRate=80.0, k=1.0, N=9.0} [1607037337060ms], id=0
+898 [pool-1-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Function took: 587 ms. Result: workers : {"placements_0":[0],"placements_1":[129140163],"placements_2":[258280326],"placements_per_function":129140163,"su
+ccessRate":80,"workers_per_loop":1} [1607037337648ms], id=0
+899 [pool-1-thread-1] INFO at.enactmentengine.serverless.nodes.ParallelStartNode - Executing parallelized_ParallelFor ParallelStartNodeOld
+900 [pool-2-thread-1] INFO at.enactmentengine.serverless.nodes.ParallelForStartNode - Executing ParallelFor_0 ParallelForStartNodeOld
+900 [pool-2-thread-2] INFO at.enactmentengine.serverless.nodes.ParallelForStartNode - Executing ParallelFor_1 ParallelForStartNodeOld
+901 [pool-2-thread-3] INFO at.enactmentengine.serverless.nodes.ParallelForStartNode - Executing ParallelFor_2 ParallelForStartNodeOld
+900 [pool-2-thread-1] INFO at.enactmentengine.serverless.nodes.ParallelForStartNode - Counter values for at.enactmentengine.serverless.nodes.ParallelForStartNode : counterStart: 0, counterEnd: 1, stepSize: 1
+902 [pool-2-thread-3] INFO at.enactmentengine.serverless.nodes.ParallelForStartNode - Counter values for at.enactmentengine.serverless.nodes.ParallelForStartNode : counterStart: 0, counterEnd: 1, stepSize: 1
+901 [pool-2-thread-2] INFO at.enactmentengine.serverless.nodes.ParallelForStartNode - Counter values for at.enactmentengine.serverless.nodes.ParallelForStartNode : counterStart: 0, counterEnd: 1, stepSize: 1
+904 [pool-4-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Executing function fractionMonolith_2 at resource: https://us-south.functions.appdomain.cloud/api/v1/web/acd8ef00-ba9d-405b-a87b-bb7c0fe056df/homework5/fr
+actionMonolithFT.json [1607037337654ms], id=1
+904 [pool-3-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Executing function fractionMonolith_0 at resource: https://eu-gb.functions.appdomain.cloud/api/v1/web/385c9967-7d39-45e5-9359-f82bc43b6376/homework5/fract
+ionMonolithFT.json [1607037337654ms], id=3
+904 [pool-5-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Executing function fractionMonolith_1 at resource: https://jp-tok.functions.appdomain.cloud/api/v1/web/0f23135f-f52c-4572-9016-256acce2213b/homework5/frac
+tionMonolithFT.json [1607037337654ms], id=2
+905 [pool-3-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Input for function fractionMonolith_0 : {placements_per_function=129140163, successRate=80, from=0, N=9} [1607037337655ms], id=3
+905 [pool-4-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Input for function fractionMonolith_2 : {placements_per_function=129140163, from=258280326, N=9} [1607037337655ms], id=1
+905 [pool-5-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Input for function fractionMonolith_1 : {placements_per_function=129140163, successRate=80, from=129140163, N=9} [1607037337655ms], id=2
+908 [pool-4-thread-1] ERROR at.enactmentengine.serverless.nodes.FunctionNode - inStream parameter is null
+908 [pool-3-thread-1] ERROR at.enactmentengine.serverless.nodes.FunctionNode - inStream parameter is null
+java.lang.NullPointerException: inStream parameter is null
+        at java.base/java.util.Objects.requireNonNull(Objects.java:233)
+        at java.base/java.util.Properties.load(Properties.java:407)
+        at at.enactmentengine.serverless.nodes.FunctionNode.getAWSAccount(FunctionNode.java:626)
+        at at.enactmentengine.serverless.nodes.FunctionNode.invokeFunction(FunctionNode.java:300)
+        at at.enactmentengine.serverless.nodes.FunctionNode.call(FunctionNode.java:191)
+        at at.enactmentengine.serverless.nodes.FunctionNode.call(FunctionNode.java:47)
+        at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+        at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+        at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+        at java.base/java.lang.Thread.run(Thread.java:832)
+908 [pool-5-thread-1] ERROR at.enactmentengine.serverless.nodes.FunctionNode - inStream parameter is null
+java.lang.NullPointerException: inStream parameter is null
+        at java.base/java.util.Objects.requireNonNull(Objects.java:233)
+        at java.base/java.util.Properties.load(Properties.java:407)
+        at at.enactmentengine.serverless.nodes.FunctionNode.getAWSAccount(FunctionNode.java:626)
+        at at.enactmentengine.serverless.nodes.FunctionNode.invokeFunction(FunctionNode.java:300)
+        at at.enactmentengine.serverless.nodes.FunctionNode.call(FunctionNode.java:191)
+        at at.enactmentengine.serverless.nodes.FunctionNode.call(FunctionNode.java:47)
+        at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+        at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+        at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+        at java.base/java.lang.Thread.run(Thread.java:832)
+911 [pool-3-thread-1] ERROR at.enactmentengine.serverless.nodes.FunctionNode - inStream parameter is null
+java.lang.NullPointerException: inStream parameter is null
+        at java.base/java.util.Objects.requireNonNull(Objects.java:233)
+        at java.base/java.util.Properties.load(Properties.java:407)
+        at at.enactmentengine.serverless.nodes.FunctionNode.getAWSAccount(FunctionNode.java:626)
+        at at.enactmentengine.serverless.nodes.FunctionNode.invokeFunction(FunctionNode.java:300)
+        at at.enactmentengine.serverless.nodes.FunctionNode.call(FunctionNode.java:191)
+        at at.enactmentengine.serverless.nodes.FunctionNode.call(FunctionNode.java:47)
+        at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+        at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+        at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+        at java.base/java.lang.Thread.run(Thread.java:832)
+java.lang.NullPointerException: inStream parameter is null
+        at java.base/java.util.Objects.requireNonNull(Objects.java:233)
+        at java.base/java.util.Properties.load(Properties.java:407)
+        at at.enactmentengine.serverless.nodes.FunctionNode.getIBMAccount(FunctionNode.java:647)
+        at at.enactmentengine.serverless.nodes.FunctionNode.invokeFunction(FunctionNode.java:300)
+        at at.enactmentengine.serverless.nodes.FunctionNode.call(FunctionNode.java:191)
+        at at.enactmentengine.serverless.nodes.FunctionNode.call(FunctionNode.java:47)
+        at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+        at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+        at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+        at java.base/java.lang.Thread.run(Thread.java:832)
+915 [pool-4-thread-1] ERROR at.enactmentengine.serverless.nodes.FunctionNode - inStream parameter is null
+919 [pool-5-thread-1] ERROR at.enactmentengine.serverless.nodes.FunctionNode - inStream parameter is null
+java.lang.NullPointerException: inStream parameter is null
+        at java.base/java.util.Objects.requireNonNull(Objects.java:233)
+        at java.base/java.util.Properties.load(Properties.java:407)
+        at at.enactmentengine.serverless.nodes.FunctionNode.getIBMAccount(FunctionNode.java:647)
+        at at.enactmentengine.serverless.nodes.FunctionNode.invokeFunction(FunctionNode.java:300)
+        at at.enactmentengine.serverless.nodes.FunctionNode.call(FunctionNode.java:191)
+        at at.enactmentengine.serverless.nodes.FunctionNode.call(FunctionNode.java:47)
+        at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+        at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+        at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+        at java.base/java.lang.Thread.run(Thread.java:832)
+922 [pool-3-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Invoking function with fault tolerance...
+925 [pool-4-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Invoking function with fault tolerance...
+java.lang.NullPointerException: inStream parameter is null
+        at java.base/java.util.Objects.requireNonNull(Objects.java:233)
+        at java.base/java.util.Properties.load(Properties.java:407)
+        at at.enactmentengine.serverless.nodes.FunctionNode.getIBMAccount(FunctionNode.java:647)
+        at at.enactmentengine.serverless.nodes.FunctionNode.invokeFunction(FunctionNode.java:300)
+        at at.enactmentengine.serverless.nodes.FunctionNode.call(FunctionNode.java:191)
+        at at.enactmentengine.serverless.nodes.FunctionNode.call(FunctionNode.java:47)
+        at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+        at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+        at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+        at java.base/java.lang.Thread.run(Thread.java:832)
+929 [pool-5-thread-1] INFO at.enactmentengine.serverless.nodes.FunctionNode - Invoking function with fault tolerance...
+11209 [pool-3-thread-1] ERROR at.uibk.dps.InvokationThread - Invocation in Thread[pool-3-thread-1,5,main]failed! - Error:{"code":"75227f420eb32c539f8c3e72179bd5ec","error":"There was an error processing your request."}
+11213 [pool-3-thread-1] INFO at.uibk.dps.MasterThread - ##############  First invokation has failed retrying 0 times.  ##############
+11213 [pool-3-thread-1] INFO at.uibk.dps.MasterThread - ##############  Trying Alternative Plan 0  ##############
+11215 [main] ERROR at.enactmentengine.serverless.main.Executor - java.util.concurrent.ExecutionException: java.util.concurrent.ExecutionException: at.uibk.dps.exception.InvokationFailureException: Invokation has failed
+java.util.concurrent.ExecutionException: java.util.concurrent.ExecutionException: java.util.concurrent.ExecutionException: at.uibk.dps.exception.InvokationFailureException: Invokation has failed
+        at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:122)
+        at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:191)
+        at at.enactmentengine.serverless.nodes.ExecutableWorkflow.executeWorkflow(ExecutableWorkflow.java:114)
+        at at.enactmentengine.serverless.main.Executor.executeWorkflow(Executor.java:110)
+        at at.enactmentengine.serverless.main.Executor.executeWorkflow(Executor.java:56)
+        at at.enactmentengine.serverless.main.Local.main(Local.java:35)
+Caused by: java.util.concurrent.ExecutionException: java.util.concurrent.ExecutionException: at.uibk.dps.exception.InvokationFailureException: Invokation has failed
+        at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:122)
+        at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:191)
+        at at.enactmentengine.serverless.nodes.ParallelStartNode.call(ParallelStartNode.java:89)
+        at at.enactmentengine.serverless.nodes.ParallelStartNode.call(ParallelStartNode.java:22)
+        at at.enactmentengine.serverless.nodes.FunctionNode.call(FunctionNode.java:207)
+        at at.enactmentengine.serverless.nodes.FunctionNode.call(FunctionNode.java:47)
+        at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+        at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+        at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+        at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.util.concurrent.ExecutionException: at.uibk.dps.exception.InvokationFailureException: Invokation has failed
+        at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:122)
+        at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:191)
+        at at.enactmentengine.serverless.nodes.ParallelForStartNode.call(ParallelForStartNode.java:247)
+        at at.enactmentengine.serverless.nodes.ParallelForStartNode.call(ParallelForStartNode.java:28)
+        ... 4 more
+Caused by: at.uibk.dps.exception.InvokationFailureException: Invokation has failed
+        at at.uibk.dps.FaultToleranceEngine.InvokeFunctionFT(FaultToleranceEngine.java:96)
+        at at.enactmentengine.serverless.nodes.FunctionNode.invokeFunction(FunctionNode.java:303)
+        at at.enactmentengine.serverless.nodes.FunctionNode.call(FunctionNode.java:191)
+        at at.enactmentengine.serverless.nodes.FunctionNode.call(FunctionNode.java:47)
+        ... 4 more
+11223 [main] INFO at.enactmentengine.serverless.main.Local - Result: null
+12377 [pool-5-thread-1] ERROR at.uibk.dps.InvokationThread - Invocation in Thread[pool-5-thread-1,5,main]failed! - Error:{"code":"57700ccde91a6fcf99ca46ccd68315ee","error":"There was an error processing your request."}
+12377 [pool-5-thread-1] INFO at.uibk.dps.MasterThread - ##############  First invokation has failed retrying 0 times.  ##############
+12378 [pool-5-thread-1] INFO at.uibk.dps.MasterThread - ##############  Trying Alternative Plan 0  ##############
