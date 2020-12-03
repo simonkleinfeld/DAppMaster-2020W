@@ -1,0 +1,280 @@
+---
+name: "hm5"
+dataIns:
+- name: "N"
+  type: "number"
+  source: "N"
+- name: "k"
+  type: "number"
+  source: "k"
+- name: "R"
+  type: "number"
+  source: "R"
+- name: "successRate"
+  type: "number"
+  source: "successRate"
+workflowBody:
+- function:
+    name: "workers"
+    type: "workersType"
+    dataIns:
+    - name: "N"
+      type: "number"
+      source: "hm5/N"
+    - name: "k"
+      type: "number"
+      source: "hm5/k"
+    - name: "R"
+      type: "number"
+      source: "hm5/R"
+    - name: "successRate"
+      source: "hm5/successRate"
+      type: "number"
+    dataOuts:
+    - name: "workers_per_loop"
+      type: "number"
+    - name: "placements_0"
+      type: "collection"
+    - name: "placements_1"
+      type: "collection"
+    - name: "placements_2"
+      type: "collection"
+    - name: "placements_per_function"
+      type: "number"
+    - name: "successRate"
+      type: "number"
+    properties:
+    - name: "resource"
+      value: "js:https://eu-gb.functions.appdomain.cloud/api/v1/web/385c9967-7d39-45e5-9359-f82bc43b6376/homework5/workers.json"
+- parallel:
+    name: "parallelized_ParallelFor"
+    dataIns:
+    - name: "N"
+      type: "number"
+      source: "hm5/N"
+    - name: "workers_per_loop"
+      type: "number"
+      source: "workers/workers_per_loop"
+    - name: "from1"
+      type: "collection"
+      source: "workers/placements_0"
+    - name: "from2"
+      type: "collection"
+      source: "workers/placements_1"
+    - name: "from3"
+      type: "collection"
+      source: "workers/placements_2"
+    - name: "placements_per_function"
+      type: "number"
+      source: "workers/placements_per_function"
+    - name: "successRate"
+      type: "number"
+      source: "workers/successRate"
+    parallelBody:
+    - section:
+      - parallelFor:
+          name: "ParallelFor_0"
+          dataIns:
+          - name: "N"
+            type: "number"
+            source: "parallelized_ParallelFor/N"
+            constraints:
+            - name: "distribution"
+              value: "REPLICATE(*)"
+          - name: "from"
+            type: "collection"
+            source: "parallelized_ParallelFor/from1"
+            constraints:
+            - name: "distribution"
+              value: "BLOCK(1)"
+          - name: "placements_per_function"
+            type: "number"
+            source: "parallelized_ParallelFor/placements_per_function"
+            constraints:
+            - name: "distribution"
+              value: "REPLICATE(*)"
+          - name: "successRate"
+            type: "number"
+            source: "parallelized_ParallelFor/successRate"
+          loopCounter:
+            type: "number"
+            from: "0"
+            to: "parallelized_ParallelFor/workers_per_loop"
+            step: "1"
+          loopBody:
+          - function:
+              name: "fractionMonolith_0"
+              type: "fractionMonolithType"
+              dataIns:
+              - name: "N"
+                type: "number"
+                source: "ParallelFor_0/N"
+              - name: "from"
+                type: "number"
+                source: "ParallelFor_0/from"
+              - name: "placements_per_function"
+                type: "number"
+                source: "ParallelFor_0/placements_per_function"
+             # - name: "successRate"
+               # type: "number"
+              #  source: "ParallelFor_0/successRate" TODO currently parameter set in ibm cloud
+              dataOuts:
+              - name: "solutions"
+                type: "number"
+              properties:
+              - name: "resource"
+                value: "js:https://eu-gb.functions.appdomain.cloud/api/v1/web/385c9967-7d39-45e5-9359-f82bc43b6376/homework5/fractionMonolithFT.json"
+              constraints:
+              - name: "FT-Retries"
+                value: "1"
+              - name: "FT-AltPlan-0"
+                value: "1;js:https://us-east.functions.appdomain.cloud/api/v1/web/726d4e6b-ac11-4d05-8e85-e221b9a76bec/homework5/fractionMonolithGiven.json"
+          dataOuts:
+          - name: "results"
+            type: "collection"
+            source: "fractionMonolith_0/solutions"
+    - section:
+      - parallelFor:
+          name: "ParallelFor_1"
+          dataIns:
+          - name: "N"
+            type: "number"
+            source: "parallelized_ParallelFor/N"
+            constraints:
+            - name: "distribution"
+              value: "REPLICATE(*)"
+          - name: "from"
+            type: "collection"
+            source: "parallelized_ParallelFor/from2"
+            constraints:
+            - name: "distribution"
+              value: "BLOCK(1)"
+          - name: "placements_per_function"
+            type: "number"
+            source: "parallelized_ParallelFor/placements_per_function"
+            constraints:
+            - name: "distribution"
+              value: "REPLICATE(*)"
+          - name: "successRate"
+            type: "number"
+            source: "parallelized_ParallelFor/successRate"
+          loopCounter:
+            type: "number"
+            from: "0"
+            to: "parallelized_ParallelFor/workers_per_loop"
+            step: "1"
+          loopBody:
+          - function:
+              name: "fractionMonolith_1"
+              type: "fractionMonolithType"
+              dataIns:
+              - name: "N"
+                type: "number"
+                source: "ParallelFor_1/N"
+              - name: "from"
+                type: "number"
+                source: "ParallelFor_1/from"
+              - name: "placements_per_function"
+                type: "number"
+                source: "ParallelFor_1/placements_per_function"
+              #- name: "successRate"
+               # type: "number"
+               # source: "ParallelFor_1/successRate"
+              dataOuts:
+              - name: "solutions"
+                type: "number"
+              properties:
+              - name: "resource"
+                value: "js:https://jp-tok.functions.appdomain.cloud/api/v1/web/0f23135f-f52c-4572-9016-256acce2213b/homework5/fractionMonolithFT.json"
+              constraints:
+              - name: "FT-Retries"
+                value: "1"
+              - name: "FT-AltPlan-0"
+                value: "1;js:https://us-east.functions.appdomain.cloud/api/v1/web/726d4e6b-ac11-4d05-8e85-e221b9a76bec/homework5/fractionMonolithGiven.json"
+          dataOuts:
+          - name: "results"
+            type: "collection"
+            source: "fractionMonolith_1/solutions"
+    - section:
+      - parallelFor:
+          name: "ParallelFor_2"
+          dataIns:
+          - name: "N"
+            type: "number"
+            source: "parallelized_ParallelFor/N"
+            constraints:
+            - name: "distribution"
+              value: "REPLICATE(*)"
+          - name: "from"
+            type: "collection"
+            source: "parallelized_ParallelFor/from3"
+            constraints:
+            - name: "distribution"
+              value: "BLOCK(1)"
+          - name: "placements_per_function"
+            type: "number"
+            source: "parallelized_ParallelFor/placements_per_function"
+            constraints:
+            - name: "distribution"
+              value: "REPLICATE(*)"
+          - name: "successRate"
+            type: "number"
+            source: "parallelized_ParallelFor/successRate"
+          loopCounter:
+            type: "number"
+            from: "0"
+            to: "parallelized_ParallelFor/workers_per_loop"
+            step: "1"
+          loopBody:
+          - function:
+              name: "fractionMonolith_2"
+              type: "fractionMonolithType"
+              dataIns:
+              - name: "N"
+                type: "number"
+                source: "ParallelFor_2/N"
+              - name: "from"
+                type: "number"
+                source: "ParallelFor_2/from"
+              - name: "placements_per_function"
+                type: "number"
+                source: "ParallelFor_2/placements_per_function"
+              #- name: "successRate"
+               # type: "number"
+               # source: "ParallelFor_2/successRate"
+              dataOuts:
+              - name: "solutions"
+                type: "number"
+              properties:
+              - name: "resource"
+                value: "js:https://us-south.functions.appdomain.cloud/api/v1/web/acd8ef00-ba9d-405b-a87b-bb7c0fe056df/homework5/fractionMonolithFT.json"
+              constraints:
+              - name: "FT-Retries"
+                value: "1"
+              - name: "FT-AltPlan-0"
+                value: "1;js:https://us-east.functions.appdomain.cloud/api/v1/web/726d4e6b-ac11-4d05-8e85-e221b9a76bec/homework5/fractionMonolithGiven.json"
+          dataOuts:
+          - name: "results"
+            type: "collection"
+            source: "fractionMonolith_2/solutions"
+    dataOuts:
+    - name: "OutVal"
+      type: "collection"
+      source: "ParallelFor_0/results,ParallelFor_1/results,ParallelFor_2/results"
+- function:
+    name: "reduction"
+    type: "reductionType"
+    dataIns:
+    - name: "results"
+      type: "collection"
+      source: "parallelized_ParallelFor/OutVal"
+    dataOuts:
+    - name: "solutions"
+      type: "number"
+    properties:
+    - name: "resource"
+      value: "js:https://eu-gb.functions.appdomain.cloud/api/v1/web/385c9967-7d39-45e5-9359-f82bc43b6376/homework5/reducers.json"
+dataOuts:
+- name: "solutions"
+  type: "number"
+  source: "reduction/solutions"

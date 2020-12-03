@@ -1,5 +1,6 @@
 {
   "N": 9,
   "k": 1,
-  "successRate": 80
+  "successRate": 80,
+  "R": 3
 }
