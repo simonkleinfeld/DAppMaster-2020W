@@ -125,8 +125,6 @@ workflowBody:
               - name: "resource"
                 value: "js:https://eu-gb.functions.appdomain.cloud/api/v1/web/385c9967-7d39-45e5-9359-f82bc43b6376/homework5/fractionMonolithFT.json"
               constraints:
-              - name: "FT-Retries"
-                value: "1"
               - name: "FT-AltPlan-0"
                 value: "1;js:https://us-east.functions.appdomain.cloud/api/v1/web/726d4e6b-ac11-4d05-8e85-e221b9a76bec/homework5/fractionMonolithGiven.json"
           dataOuts:
@@ -187,8 +185,6 @@ workflowBody:
               - name: "resource"
                 value: "js:https://jp-tok.functions.appdomain.cloud/api/v1/web/0f23135f-f52c-4572-9016-256acce2213b/homework5/fractionMonolithFT.json"
               constraints:
-              - name: "FT-Retries"
-                value: "1"
               - name: "FT-AltPlan-0"
                 value: "1;js:https://us-east.functions.appdomain.cloud/api/v1/web/726d4e6b-ac11-4d05-8e85-e221b9a76bec/homework5/fractionMonolithGiven.json"
           dataOuts:
@@ -249,8 +245,8 @@ workflowBody:
               - name: "resource"
                 value: "js:https://us-south.functions.appdomain.cloud/api/v1/web/acd8ef00-ba9d-405b-a87b-bb7c0fe056df/homework5/fractionMonolithFT.json"
               constraints:
-              - name: "FT-Retries"
-                value: "1"
+              #- name: "FT-Retries"
+               # value: "1"
               - name: "FT-AltPlan-0"
                 value: "1;js:https://us-east.functions.appdomain.cloud/api/v1/web/726d4e6b-ac11-4d05-8e85-e221b9a76bec/homework5/fractionMonolithGiven.json"
           dataOuts:
