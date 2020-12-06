@@ -126,7 +126,7 @@ workflowBody:
                 type: "number"
               properties:
               - name: "resource"
-                value: "arn:aws:lambda:us-east-1:748833748483:function:fractionMonolithFTAWS"
+                value: "js:https://eu-gb.functions.appdomain.cloud/api/v1/web/385c9967-7d39-45e5-9359-f82bc43b6376/homework5/fractionMonolithFT.json"
               constraints:
               - name: "FT-AltPlan-0"
                 value: "1;https://us-east.functions.appdomain.cloud/api/v1/web/726d4e6b-ac11-4d05-8e85-e221b9a76bec/homework5/fractionMonolithGiven.json;"
