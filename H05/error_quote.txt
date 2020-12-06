@@ -1,0 +1,8 @@
+Nr of calls for n = 4: 81; for all iterations = 336; summed failures = 49; percentages = 0,15
+Nr of calls for n = 3; 27; for all iterations = 108; summed failures = 19; percentages = 0,17
+Nr of calls for n = 2; 9;  for all iterations = 36;  summed failures = 8;  percentages = 0,22
+Nr of calls for n = 1; 3;  for all iterations = 12;  summed failures = 1;  percentages = 0,08
+
+The error rate fits into the success rate.
+The error rate for all iterations (summed for every k and iterations): 0,09
+
