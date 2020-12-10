@@ -1,0 +1,277 @@
+---
+name: "GCAFC"
+dataIns:
+- name: "flightID"
+  type: "string"
+  source: "flightID"
+- name: "newGate"
+  type: "string"
+  source: "newGate"
+- name: "security"
+  type: "string"
+  source: "security"
+workflowBody:
+- parallel:
+    name: "parRetr"
+    dataIns:
+    - name: "flightID"
+      type: "string"
+      source: "GCAFC/flightID"
+    - name: "newGate"
+      type: "string"
+      source: "GCAFC/newGate"
+    - name: "security"
+      type: "string"
+      source: "GCAFC/security"
+    parallelBody:
+    - section:
+      - function:
+          name: "getPassengers"
+          type: "getPassengersType"
+          dataIns:
+          - name: "flightID"
+            type: "string"
+            source: "parRetr/flightID"
+          dataOuts:
+          - name: "passengerIDs"
+            type: "collection"
+          - name: "passengersAtAirport"
+            type: "number"
+    - section:
+      - function:
+          name: "secCheckTime"
+          type: "secCheckTimeType"
+          dataIns:
+          - name: "security"
+            type: "string"
+            source: "parRetr/security"
+          dataOuts:
+          - name: "securityDelay"
+            type: "number"
+    - section:
+      - function:
+          name: "getGateGPS"
+          type: "getGateGPSType"
+          dataIns:
+          - name: "gate"
+            type: "string"
+            source: "parRetr/newGate"
+          dataOuts:
+          - name: "newGateGPS"
+            type: "string"
+          - name: "securityGPS"
+            type: "string"
+      - function:
+          name: "distanceGPS"
+          type: "distanceGPSType"
+          dataIns:
+          - name: "gps1"
+            type: "string"
+            source: "getGateGPS/newGateGPS"
+          - name: "gps2"
+            type: "string"
+            source: "getGateGPS/securityGPS"
+          - name: "newGateGPS"
+            type: "string"
+            source: "getGateGPS/newGateGPS"
+            passing: true
+          - name: "securityGPS"
+            type: "string"
+            source: "getGateGPS/securityGPS"
+            passing: true
+          dataOuts:
+          - name: "delay"
+            type: "number"
+    dataOuts:
+    - name: "passengerIDs"
+      type: "collection"
+      source: "getPassengers/passengerIDs"
+    - name: "securityDelay"
+      type: "number"
+      source: "secCheckTime/securityDelay"
+    - name: "passengersAtAirport"
+      type: "number"
+      source: "getPassengers/passengersAtAirport"
+    - name: "gpsNewGate"
+      type: "string"
+      source: "distanceGPS/newGateGPS"
+    - name: "secGateDelay"
+      type: "number"
+      source: "distanceGPS/delay"
+    - name: "securityGPS"
+      type: "string"
+      source: "distanceGPS/securityGPS"
+- parallelFor:
+    name: "pPass"
+    dataIns:
+    - name: "passengerIDs"
+      type: "number"
+      source: "parRetr/passengerIDs"
+      constraints:
+      - name: "distribution"
+        value: "BLOCK(1)"
+    - name: "gpsNewGate"
+      type: "string"
+      source: "parRetr/gpsNewGate"
+      constraints:
+      - name: "distribution"
+        value: "REPLICATE(*)"
+    - name: "securityDelay"
+      type: "number"
+      source: "parRetr/securityDelay"
+      constraints:
+      - name: "distribution"
+        value: "REPLICATE(*)"
+    - name: "secGateDelay"
+      type: "number"
+      source: "parRetrSecGateDelay"
+      constraints:
+      - name: "distribution"
+        value: "REPLICATE(*)"
+    - name: "securityGPS"
+      type: "string"
+      source: "parRetr/securityGPS"
+      constraints:
+      - name: "distribution"
+        value: "REPLICATE(*)"
+    loopCounter:
+      from: "0"
+      to: "parRetr/passengersAtAirport"
+      step: "1"
+    loopBody:
+    - function:
+        name: "readGPS"
+        type: "readGPSType"
+        dataIns:
+        - name: "passengerIDs"
+          type: "number"
+          source: "pPass/passengerIDs"
+        - name: "gpsGate"
+          type: "string"
+          source: "pPass/gpsGate"
+          passing: true
+        - name: "secGateDelay"
+          type: "number"
+          source: "pPass/secGateDelay"
+          passing: true
+        - name: "securityDelay"
+          type: "number"
+          source: "pPass/securityDelay"
+          passing: true
+        - name: "securityGPS"
+          type: "string"
+          source: "pPass/securityGPS"
+          passing: true
+        dataOuts:
+        - name: "passengerGPS"
+          type: "string"
+        - name: "area"
+          type: "string"
+    - if:
+        name: "ifPublic"
+        dataIns:
+        - name: "securityGPS"
+          type: "string"
+          source: "readGPS/securityGPS"
+        - name: "passengerGPS"
+          type: "string"
+          source: "readGPS/PassengerGPS"
+        - name: "securityDelay"
+          type: "number"
+          source: "readGPS/securityDelay"
+        - name: "secGateDelay"
+          type: "number"
+          source: "readGPS/secGateDelay"
+        condition:
+          conditions:
+          - data1: "readGPS/area"
+            data2: "\"public\""
+            operator: "="
+        then:
+        - function:
+            name: "disPassSec"
+            type: "distanceGPSType"
+            dataIns:
+            - name: "gps1"
+              type: "string"
+              source: "ifPublic/newGateGPS"
+            - name: "gps2"
+              type: "string"
+              source: "ifPublic/passengerGPS"
+            - name: "securityDelay"
+              type: "number"
+              source: "ifPublic/newGateGPS"
+              passing: true
+            - name: "securityGateDelay"
+              type: "number"
+              source: "ifPublic/secGateDelay"
+              passing: true
+            dataOuts:
+            - name: "delay"
+              type: "number"
+        - function:
+            name: "sumUp"
+            type: "sumUpType"
+            dataIns:
+            - name: "passSecDelay"
+              type: "number"
+              source: "disPassSec/delay"
+            - name: "securityDelay"
+              type: "number"
+              source: "disPassSec/newGateGPS"
+            - name: "securityGateDelay"
+              type: "number"
+              source: "disPassSec/secGateDelay"
+            dataOuts:
+            - name: "delayPublic"
+              type: "number"
+        else:
+        - function:
+            name: "disPassGate"
+            type: "distanceGPSType"
+            dataIns:
+            - name: "gps1"
+              type: "string"
+              source: "ifPublic/newGateGPS"
+            - name: "gps2"
+              type: "string"
+              source: "ifPublic/passengerGPS"
+            dataOuts:
+            - name: "delay"
+              type: "number"
+        dataOuts:
+        - name: "delayPublic"
+          type: "number"
+          source: "sumUp/delayPublic"
+        - name: "delayRestricted"
+          type: "number"
+          source: "disPassGate/delay"
+    dataOuts:
+    - name: "delayPublic"
+      type: "collection"
+      source: "ifPublic/delayPublic"
+    - name: "delayRestricted"
+      type: "collection"
+      source: "ifPublic/delayRestricted"
+- function:
+    name: "averageTime"
+    type: "averageTimeType"
+    dataIns:
+    - name: "delayRestricted"
+      type: "collection"
+      source: "pPass/delayRestricted"
+    - name: "delayPublic"
+      type: "collection"
+      source: "pPass/delayPublic"
+    dataOuts:
+    - name: "avgTimePublic"
+      type: "number"
+    - name: "avgTimeRestricted"
+      type: "number"
+dataOuts:
+- name: "avgTimeRestricted"
+  type: "number"
+  source: "averageTime/avgTimeRestricted"
+- name: "avgTimePublic"
+  type: "number"
+  source: "averageTime/avgTimePublic"
